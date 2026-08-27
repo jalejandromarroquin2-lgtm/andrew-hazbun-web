@@ -2,9 +2,9 @@
    Andrew Hazbun Specialized Center — hoja de estilos principal
    =========================================================== */
 
-@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=Montserrat:wght@300;400;500;600;700&family=Allura&display=swap');
 
 :root{
+  color-scheme: dark;
   --black: #0b0b0c;
   --charcoal: #17181b;
   --charcoal-2: #1f2024;
@@ -122,7 +122,7 @@ p{ margin: 0 0 1em; }
   text-transform: uppercase;
   border: 1px solid transparent;
   cursor: pointer;
-  transition: all 0.25s ease;
+  transition: background-color .25s ease, border-color .25s ease, color .25s ease, transform .25s ease;
   white-space: nowrap;
 }
 .btn-gold{
@@ -216,7 +216,7 @@ body{ padding-top: var(--header-h); }
   border: 1px solid var(--gold-soft);
   color: var(--gold);
   display: flex; align-items: center; justify-content: center;
-  transition: all 0.2s ease;
+  transition: background-color .2s ease, border-color .2s ease, color .2s ease;
 }
 .nav-call:hover{ border-color: var(--gold); background: rgba(200,168,98,0.08); }
 .nav-call svg{ width: 18px; height: 18px; }
@@ -532,7 +532,7 @@ section{ padding: 100px 0; }
   border: 1px solid var(--line);
   border-radius: 50%;
   color: var(--white-dim);
-  transition: all 0.2s ease;
+  transition: background-color .2s ease, border-color .2s ease, color .2s ease;
 }
 .social-row a:hover{ border-color: var(--gold); color: var(--gold); }
 
@@ -824,3 +824,39 @@ section{ padding: 100px 0; }
 .legal h2:first-of-type { margin-top: 0; }
 .legal p { color: var(--white-dim); line-height: 1.75; }
 .legal strong { color: var(--white); font-weight: 500; }
+
+/* ---------- Accesibilidad y toque ---------- */
+/* El enlace de salto queda fuera de la vista hasta que recibe el foco con Tab. */
+.skip-link {
+  position: absolute;
+  left: 12px;
+  top: -60px;
+  z-index: 999;
+  padding: 0.7em 1.2em;
+  background: var(--gold);
+  color: var(--black);
+  font-size: 0.85rem;
+  letter-spacing: 0.05em;
+  text-decoration: none;
+  border-radius: var(--radius, 4px);
+  transition: top .2s ease;
+}
+.skip-link:focus { top: 12px; }
+
+/* El encabezado es fijo: sin este margen, el ancla deja el título debajo de él. */
+[id] { scroll-margin-top: calc(var(--header-h) + 16px); }
+
+/* Elimina el retardo de 300 ms al tocar en móvil. */
+a, button, summary, .btn, [role="button"] { touch-action: manipulation; }
+
+/* Foco visible en todo lo que se puede enfocar, no solo en algunos controles. */
+a:focus-visible,
+button:focus-visible,
+summary:focus-visible,
+[tabindex]:focus-visible {
+  outline: 2px solid var(--gold);
+  outline-offset: 3px;
+  border-radius: 3px;
+}
+
+.lightbox { overscroll-behavior: contain; }
