@@ -907,4 +907,10 @@ summary:focus-visible,
     display: flex;
     align-items: center;
   }
+
+  /* Los iconos de redes medían 42 px: se completan a 44 sin cambiar el círculo. */
+  .social-row a {
+    min-width: 44px;
+    min-height: 44px;
+  }
 }
