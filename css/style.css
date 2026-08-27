@@ -790,3 +790,37 @@ section{ padding: 100px 0; }
   .faq-item summary::before,
   .faq-item summary::after { transition: none; }
 }
+
+/* ---------- Enlace legal del pie ---------- */
+.footer-bottom {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.6em 1.5em;
+}
+.footer-legal {
+  color: var(--white-faint);
+  font-size: 0.82rem;
+  text-decoration: none;
+  border-bottom: 1px solid transparent;
+  transition: color .2s ease, border-color .2s ease;
+}
+.footer-legal:hover { color: var(--gold); border-bottom-color: var(--gold); }
+.footer-legal:focus-visible { outline: 2px solid var(--gold); outline-offset: 3px; }
+
+/* ---------- Páginas legales ---------- */
+.legal { max-width: 68ch; margin: 0 auto; }
+.legal-date {
+  color: var(--white-faint);
+  font-size: 0.85rem;
+  letter-spacing: 0.04em;
+  margin-bottom: 2.5em;
+}
+.legal h2 {
+  font-size: 1.3rem;
+  margin: 2.2em 0 0.6em;
+}
+.legal h2:first-of-type { margin-top: 0; }
+.legal p { color: var(--white-dim); line-height: 1.75; }
+.legal strong { color: var(--white); font-weight: 500; }
