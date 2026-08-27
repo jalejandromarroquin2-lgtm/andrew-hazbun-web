@@ -3,11 +3,11 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Andrew Hazbun Specialized Center | Clínica Dental en Zona 10, Guatemala</title>
-<meta name="description" content="Centro dental especializado del Dr. John Andrew Hazbun Legrand en Design Center, Zona 10, Ciudad de Guatemala. Implantes, ortodoncia, rehabilitación oral, diseño de sonrisa y más de 24 años de experiencia.">
+<title>Clínica Dental en Zona 10 | Andrew Hazbun Specialized Center</title>
+<meta name="description" content="Centro dental especializado en Design Center, Zona 10, Guatemala. Implantes, ortodoncia, rehabilitación oral y diseño de sonrisa. Más de 24 años de experiencia.">
 <link rel="canonical" href="https://andrewhazbun.com/">
-<link rel="icon" type="image/png" sizes="32x32" href="images/favicon-32.webp">
-<link rel="apple-touch-icon" sizes="180x180" href="images/favicon-180.webp">
+<link rel="icon" type="image/png" sizes="32x32" href="images/favicon-32.png">
+<link rel="apple-touch-icon" sizes="180x180" href="images/favicon-180.png">
 <link rel="stylesheet" href="css/style.css">
 
 <meta property="og:type" content="website">
@@ -24,16 +24,18 @@
 <meta name="twitter:description" content="Centro dental especializado del Dr. John Andrew Hazbun Legrand en Design Center, Zona 10, Ciudad de Guatemala.">
 <meta name="twitter:image" content="https://andrewhazbun.com/images/og-preview.jpg">
 
-<script type="application/ld+json">
+  <script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "Dentist",
+  "@id": "https://andrewhazbun.com/#clinica",
   "name": "Andrew Hazbun Specialized Center",
   "image": "https://andrewhazbun.com/images/og-preview.jpg",
-  "logo": "https://andrewhazbun.com/images/favicon-512.webp",
+  "logo": "https://andrewhazbun.com/images/favicon-512.png",
   "url": "https://andrewhazbun.com/",
   "telephone": "+50225099934",
   "priceRange": "$$",
+  "currenciesAccepted": "GTQ",
   "address": {
     "@type": "PostalAddress",
     "streetAddress": "Diagonal 6, 12-42 zona 10, Design Center, Torre 1, Nivel 9, Oficina 909",
@@ -44,17 +46,160 @@
   "openingHoursSpecification": [
     {
       "@type": "OpeningHoursSpecification",
-      "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"],
+      "dayOfWeek": [
+        "Monday",
+        "Tuesday",
+        "Wednesday",
+        "Thursday",
+        "Friday"
+      ],
       "opens": "09:00",
       "closes": "18:00"
+    },
+    {
+      "@type": "OpeningHoursSpecification",
+      "dayOfWeek": "Saturday",
+      "opens": "00:00",
+      "closes": "00:00",
+      "description": "Únicamente con cita previa"
     }
   ],
+  "areaServed": {
+    "@type": "City",
+    "name": "Ciudad de Guatemala"
+  },
+  "medicalSpecialty": "Dentistry",
+  "founder": {
+    "@type": "Person",
+    "@id": "https://andrewhazbun.com/sobre-nosotros.html#dr-hazbun",
+    "name": "Dr. John Andrew Hazbun Legrand",
+    "jobTitle": "Especialista en Implantes Dentales, Rehabilitación y Estética",
+    "alumniOf": [
+      {
+        "@type": "CollegeOrUniversity",
+        "name": "Universidad Francisco Marroquín"
+      },
+      {
+        "@type": "CollegeOrUniversity",
+        "name": "Universidad Andrés Bello",
+        "address": {
+          "@type": "PostalAddress",
+          "addressCountry": "CL"
+        }
+      }
+    ],
+    "worksFor": {
+      "@id": "https://andrewhazbun.com/#clinica"
+    },
+    "url": "https://andrewhazbun.com/sobre-nosotros.html"
+  },
+  "contactPoint": [
+    {
+      "@type": "ContactPoint",
+      "contactType": "reservations",
+      "telephone": "+50241268429",
+      "name": "WhatsApp"
+    },
+    {
+      "@type": "ContactPoint",
+      "contactType": "customer service",
+      "telephone": "+50225099934",
+      "name": "PBX"
+    }
+  ],
+  "hasOfferCatalog": {
+    "@type": "OfferCatalog",
+    "name": "Tratamientos",
+    "itemListElement": [
+      {
+        "@type": "Offer",
+        "itemOffered": {
+          "@type": "MedicalProcedure",
+          "name": "Implantes dentales",
+          "description": "Reemplazo de piezas dentales con planificación digital de precisión."
+        }
+      },
+      {
+        "@type": "Offer",
+        "itemOffered": {
+          "@type": "MedicalProcedure",
+          "name": "Ortodoncia",
+          "description": "Brackets convencionales, de autoligado y alineadores invisibles."
+        }
+      },
+      {
+        "@type": "Offer",
+        "itemOffered": {
+          "@type": "MedicalProcedure",
+          "name": "Rehabilitación oral",
+          "description": "Recuperación de la función masticatoria y la armonía de la sonrisa."
+        }
+      },
+      {
+        "@type": "Offer",
+        "itemOffered": {
+          "@type": "MedicalProcedure",
+          "name": "Diseño de sonrisa",
+          "description": "Planificación digital, diagnóstico 3D y carillas de alta estética."
+        }
+      },
+      {
+        "@type": "Offer",
+        "itemOffered": {
+          "@type": "MedicalProcedure",
+          "name": "Blanqueamiento dental",
+          "description": "Resultados visibles desde la primera sesión, en 20 minutos."
+        }
+      },
+      {
+        "@type": "Offer",
+        "itemOffered": {
+          "@type": "MedicalProcedure",
+          "name": "Periodoncia",
+          "description": "Diagnóstico y tratamiento de las encías."
+        }
+      },
+      {
+        "@type": "Offer",
+        "itemOffered": {
+          "@type": "MedicalProcedure",
+          "name": "Sedación con óxido nitroso",
+          "description": "Alternativa para pacientes con ansiedad ante el dentista."
+        }
+      },
+      {
+        "@type": "Offer",
+        "itemOffered": {
+          "@type": "MedicalProcedure",
+          "name": "Escaneo digital 3D",
+          "description": "Impresiones digitales sin moldes tradicionales."
+        }
+      },
+      {
+        "@type": "Offer",
+        "itemOffered": {
+          "@type": "MedicalProcedure",
+          "name": "Diagnóstico digital de alta precisión",
+          "description": "Radiografías 3D y escáneres digitales en sitio."
+        }
+      }
+    ]
+  },
   "sameAs": [
     "https://www.instagram.com/andrewhazbun/",
     "https://www.facebook.com/andrewhazbundentalcenter"
   ]
 }
-</script>
+  </script>
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebSite",
+  "name": "Andrew Hazbun Specialized Center",
+  "url": "https://andrewhazbun.com/",
+  "inLanguage": "es"
+}
+  </script>
 </head>
 <body>
 
