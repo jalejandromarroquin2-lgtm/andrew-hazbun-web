@@ -860,3 +860,51 @@ summary:focus-visible,
 }
 
 .lightbox { overscroll-behavior: contain; }
+
+/* ---------- Zonas táctiles en móvil ---------- */
+/* Los controles del encabezado medían entre 27 y 40 px. En un teléfono el dedo
+   necesita 44 px para acertar con comodidad, que es el mínimo que recomiendan
+   tanto Apple como Google. Se amplía el área de toque sin agrandar el dibujo:
+   el círculo sigue viéndose igual, lo que crece es la zona que responde. */
+@media (max-width: 900px) {
+  .nav-toggle {
+    min-width: 44px;
+    min-height: 44px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0;
+  }
+
+  /* El pseudo-elemento extiende el toque más allá del círculo visible. */
+  .site-header .nav-call,
+  .site-header .nav-cta .btn-whatsapp.nav-wa,
+  .brand {
+    position: relative;
+  }
+  .site-header .nav-call::after,
+  .site-header .nav-cta .btn-whatsapp.nav-wa::after,
+  .brand::after {
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 44px;
+    height: 44px;
+    transform: translate(-50%, -50%);
+  }
+
+  /* Los enlaces del menú desplegable ocupaban 40 px de alto. */
+  .main-nav a {
+    display: flex;
+    align-items: center;
+    min-height: 44px;
+  }
+
+  /* Las preguntas frecuentes se abren tocando el resumen: fila cómoda. */
+  .faq-item summary {
+    min-height: 44px;
+    display: flex;
+    align-items: center;
+  }
+}
