@@ -57,6 +57,28 @@ El sitio web está compuesto por los siguientes archivos HTML:
 - Todo lo enfocable tiene `:focus-visible` visible. Hay enlace de salto al contenido y `scroll-margin-top` para que el encabezado fijo no tape el destino de las anclas.
 - El lightbox de la galería es un diálogo: cierra con Escape, bloquea el scroll de fondo y devuelve el foco a la miniatura de origen.
 
+## Caché del CSS y el JS
+GitHub Pages sirve todo con `Cache-Control: max-age=600`, así que tras un
+despliegue los visitantes recurrentes siguen viendo la hoja de estilos vieja
+durante diez minutos. Por eso los enlaces a `style.css` y `script.js` llevan
+`?v=` con un hash del contenido del propio archivo.
+
+**Al cambiar cualquiera de los dos hay que regenerar ese hash**, si no el
+cambio no llega a quien ya visitó el sitio:
+
+```
+python3 - <<'EOF'
+import hashlib, re, glob
+V = {p: hashlib.sha1(open(p,'rb').read()).hexdigest()[:8] for p in ("css/style.css","js/script.js")}
+for f in glob.glob("*.html"):
+    s = open(f, encoding="utf-8").read()
+    for ruta, h in V.items():
+        s = re.sub(r'(["\'])(/?' + re.escape(ruta) + r')(\?v=[0-9a-f]+)?\1',
+                   lambda m: f'{m.group(1)}{m.group(2)}?v={h}{m.group(1)}', s)
+    open(f, "w", encoding="utf-8").write(s)
+EOF
+```
+
 ## Pendientes que dependen del cliente
 - **Bing Webmaster Tools**: sin dar de alta. Importa la propiedad directamente desde Google Search Console en un paso. Importa porque es la fuente de índice que alimenta a Copilot y a las búsquedas de ChatGPT.
 - **Analítica**: no hay ninguna instalada. La opción que encaja con el cliente es Cloudflare Web Analytics, gratuita, sin cookies y por tanto sin necesidad de banner de consentimiento, y el dominio ya está en Cloudflare.
