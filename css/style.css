@@ -332,18 +332,18 @@ body{ padding-top: var(--header-h); }
 }
 
 .hero-bg-index{
-  background-image: url('../images/reception-entrance.jpg');
+  background-image: url('../images/reception-entrance.webp');
   background-position: center 35%;
 }
 .hero-bg-contacto{
-  background-image: url('../images/reception-moody.jpg');
+  background-image: url('../images/reception-moody.webp');
   background-position: center 40%;
 }
 .hero-bg-servicios{
-  background-image: url('../images/team-treatment-h.jpg');
+  background-image: url('../images/team-treatment-h.webp');
 }
 .hero-bg-about{
-  background-image: url('../images/hero-golden-hour.jpg');
+  background-image: url('../images/hero-golden-hour.webp');
   background-position: center 55%;
 }
 
