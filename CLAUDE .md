@@ -36,6 +36,8 @@ El sitio web está compuesto por los siguientes archivos HTML:
 - **Excepciones que siguen en PNG/JPG a propósito**: `og-preview.jpg`, porque varios rastreadores sociales (WhatsApp entre ellos) no renderizan WebP en la vista previa del enlace; y los `favicon-*.png`, porque iOS no acepta `apple-touch-icon` en WebP.
 - Cada `<img>` lleva `loading="lazy"`, `decoding="async"` y sus `width`/`height` reales. Sin las dimensiones, la página salta mientras carga. La única imagen sin `lazy` es el logo del encabezado, por estar sobre el pliegue.
 - El fondo del hero de cada página se precarga con `<link rel="preload" as="image">` en su `<head>`. Si se cambia ese fondo en el CSS, hay que cambiar también el preload.
+- **Trampa con `width`/`height`:** si una imagen lleva esos atributos y además le fijás **solo una** dimensión por CSS (por ejemplo `style="height:52px"`), el navegador usa el atributo `width` como ancho y la aplasta. Siempre acompañá con `width:auto` (o `height:auto`, según cuál fijes). Así pasó con el logo del pie.
+- Las imágenes que se muestran en rejilla (galería, tríptico de servicios) llevan `srcset` con una variante `-900.webp` y un `sizes` que describe la rejilla real. Si cambian las columnas en el CSS, hay que actualizar el `sizes` o el navegador elegirá mal el archivo.
 
 ## Manejo de imágenes (lecciones aprendidas)
 - Las fotos del celular del cliente suelen traer una etiqueta EXIF de orientación que `sips -g orientation` no reporta bien. Usar `PIL.ImageOps.exif_transpose()` o `sips --resampleHeightWidthMax` directo sobre el original, nunca rotar manualmente con `sips -r` y luego redimensionar, eso causa doble rotación.
