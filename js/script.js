@@ -50,13 +50,28 @@ document.addEventListener('DOMContentLoaded', function () {
     document.querySelectorAll('[data-lightbox]').forEach(function (trigger) {
       trigger.addEventListener('click', function (e) {
         e.preventDefault();
+        lastTrigger = trigger;
         lightboxImg.src = trigger.getAttribute('href');
+        lightboxImg.alt = (trigger.querySelector('img') || {}).alt || '';
         lightbox.classList.add('open');
+        lightbox.setAttribute('aria-hidden', 'false');
+        document.body.style.overflow = 'hidden';
+        var cerrar = lightbox.querySelector('.lightbox-close');
+        if (cerrar) cerrar.focus();
       });
     });
-    lightbox.addEventListener('click', function () {
+    var lastTrigger = null;
+    function closeLightbox() {
+      if (!lightbox.classList.contains('open')) return;
       lightbox.classList.remove('open');
+      lightbox.setAttribute('aria-hidden', 'true');
       lightboxImg.src = '';
+      document.body.style.overflow = '';
+      if (lastTrigger) { lastTrigger.focus(); lastTrigger = null; }
+    }
+    lightbox.addEventListener('click', closeLightbox);
+    document.addEventListener('keydown', function (e) {
+      if (e.key === 'Escape') closeLightbox();
     });
   }
 

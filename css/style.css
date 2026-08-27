@@ -2,9 +2,9 @@
    Andrew Hazbun Specialized Center — hoja de estilos principal
    =========================================================== */
 
-@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=Montserrat:wght@300;400;500;600;700&family=Allura&display=swap');
 
 :root{
+  color-scheme: dark;
   --black: #0b0b0c;
   --charcoal: #17181b;
   --charcoal-2: #1f2024;
@@ -122,7 +122,7 @@ p{ margin: 0 0 1em; }
   text-transform: uppercase;
   border: 1px solid transparent;
   cursor: pointer;
-  transition: all 0.25s ease;
+  transition: background-color .25s ease, border-color .25s ease, color .25s ease, transform .25s ease;
   white-space: nowrap;
 }
 .btn-gold{
@@ -216,7 +216,7 @@ body{ padding-top: var(--header-h); }
   border: 1px solid var(--gold-soft);
   color: var(--gold);
   display: flex; align-items: center; justify-content: center;
-  transition: all 0.2s ease;
+  transition: background-color .2s ease, border-color .2s ease, color .2s ease;
 }
 .nav-call:hover{ border-color: var(--gold); background: rgba(200,168,98,0.08); }
 .nav-call svg{ width: 18px; height: 18px; }
@@ -332,18 +332,18 @@ body{ padding-top: var(--header-h); }
 }
 
 .hero-bg-index{
-  background-image: url('../images/reception-entrance.jpg');
+  background-image: url('../images/reception-entrance.webp');
   background-position: center 35%;
 }
 .hero-bg-contacto{
-  background-image: url('../images/reception-moody.jpg');
+  background-image: url('../images/reception-moody.webp');
   background-position: center 40%;
 }
 .hero-bg-servicios{
-  background-image: url('../images/team-treatment-h.jpg');
+  background-image: url('../images/team-treatment-h.webp');
 }
 .hero-bg-about{
-  background-image: url('../images/hero-golden-hour.jpg');
+  background-image: url('../images/hero-golden-hour.webp');
   background-position: center 55%;
 }
 
@@ -532,7 +532,7 @@ section{ padding: 100px 0; }
   border: 1px solid var(--line);
   border-radius: 50%;
   color: var(--white-dim);
-  transition: all 0.2s ease;
+  transition: background-color .2s ease, border-color .2s ease, color .2s ease;
 }
 .social-row a:hover{ border-color: var(--gold); color: var(--gold); }
 
@@ -735,3 +735,128 @@ section{ padding: 100px 0; }
 }
 .text-center{ text-align:center; }
 .mt-0{ margin-top:0; }
+
+/* ---------- Preguntas frecuentes ---------- */
+.faq {
+  max-width: 820px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+}
+.faq-item {
+  border-bottom: 1px solid var(--line, rgba(255,255,255,0.12));
+}
+.faq-item summary {
+  list-style: none;
+  cursor: pointer;
+  padding: 1.15em 2.2em 1.15em 0;
+  position: relative;
+  font-family: var(--sans, inherit);
+  font-weight: 500;
+  font-size: 1.02rem;
+  transition: color .2s ease;
+}
+.faq-item summary::-webkit-details-marker { display: none; }
+.faq-item summary:hover { color: var(--gold, #c9a227); }
+.faq-item summary:focus-visible {
+  outline: 2px solid var(--gold, #c9a227);
+  outline-offset: 3px;
+  border-radius: 3px;
+}
+/* El signo se dibuja con dos trazos: el vertical desaparece al abrir. */
+.faq-item summary::before,
+.faq-item summary::after {
+  content: "";
+  position: absolute;
+  right: 4px;
+  top: 50%;
+  width: 13px;
+  height: 1.5px;
+  background: currentColor;
+  transition: transform .25s ease, opacity .25s ease;
+}
+.faq-item summary::after { transform: rotate(90deg); }
+.faq-item[open] summary::after { transform: rotate(0deg); opacity: 0; }
+.faq-item p {
+  margin: 0;
+  padding: 0 2.2em 1.5em 0;
+  color: var(--white-faint, rgba(255,255,255,0.66));
+  font-size: 0.96rem;
+  line-height: 1.7;
+  max-width: 68ch;
+}
+@media (prefers-reduced-motion: reduce) {
+  .faq-item summary::before,
+  .faq-item summary::after { transition: none; }
+}
+
+/* ---------- Enlace legal del pie ---------- */
+.footer-bottom {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.6em 1.5em;
+}
+.footer-legal {
+  color: var(--white-faint);
+  font-size: 0.82rem;
+  text-decoration: none;
+  border-bottom: 1px solid transparent;
+  transition: color .2s ease, border-color .2s ease;
+}
+.footer-legal:hover { color: var(--gold); border-bottom-color: var(--gold); }
+.footer-legal:focus-visible { outline: 2px solid var(--gold); outline-offset: 3px; }
+
+/* ---------- Páginas legales ---------- */
+.legal { max-width: 68ch; margin: 0 auto; }
+.legal-date {
+  color: var(--white-faint);
+  font-size: 0.85rem;
+  letter-spacing: 0.04em;
+  margin-bottom: 2.5em;
+}
+.legal h2 {
+  font-size: 1.3rem;
+  margin: 2.2em 0 0.6em;
+}
+.legal h2:first-of-type { margin-top: 0; }
+.legal p { color: var(--white-dim); line-height: 1.75; }
+.legal strong { color: var(--white); font-weight: 500; }
+
+/* ---------- Accesibilidad y toque ---------- */
+/* El enlace de salto queda fuera de la vista hasta que recibe el foco con Tab. */
+.skip-link {
+  position: absolute;
+  left: 12px;
+  top: -60px;
+  z-index: 999;
+  padding: 0.7em 1.2em;
+  background: var(--gold);
+  color: var(--black);
+  font-size: 0.85rem;
+  letter-spacing: 0.05em;
+  text-decoration: none;
+  border-radius: var(--radius, 4px);
+  transition: top .2s ease;
+}
+.skip-link:focus { top: 12px; }
+
+/* El encabezado es fijo: sin este margen, el ancla deja el título debajo de él. */
+[id] { scroll-margin-top: calc(var(--header-h) + 16px); }
+
+/* Elimina el retardo de 300 ms al tocar en móvil. */
+a, button, summary, .btn, [role="button"] { touch-action: manipulation; }
+
+/* Foco visible en todo lo que se puede enfocar, no solo en algunos controles. */
+a:focus-visible,
+button:focus-visible,
+summary:focus-visible,
+[tabindex]:focus-visible {
+  outline: 2px solid var(--gold);
+  outline-offset: 3px;
+  border-radius: 3px;
+}
+
+.lightbox { overscroll-behavior: contain; }

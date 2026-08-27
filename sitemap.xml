@@ -20,4 +20,8 @@
     <loc>https://andrewhazbun.com/galeria.html</loc>
     <priority>0.6</priority>
   </url>
+  <url>
+    <loc>https://andrewhazbun.com/aviso-de-privacidad.html</loc>
+    <priority>0.3</priority>
+  </url>
 </urlset>

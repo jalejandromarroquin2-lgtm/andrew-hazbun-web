@@ -10,8 +10,9 @@ El sitio web está compuesto por los siguientes archivos HTML:
 - `index.html` (Página principal)
 - `servicios.html`
 - `galeria.html`
-- `contacto.html`
+- `contacto.html` (incluye las preguntas frecuentes)
 - `sobre-nosotros.html`
+- `aviso-de-privacidad.html`
 
 ## Reglas para Claude
 - Lee siempre este archivo antes de proponer cambios de código.
@@ -30,6 +31,12 @@ El sitio web está compuesto por los siguientes archivos HTML:
 - Para publicar cambios: commitear y `git push` a `main`, GitHub Pages reconstruye solo en 1-2 minutos.
 - SEO ya configurado: `sitemap.xml`, `robots.txt`, datos estructurados (JSON-LD tipo Dentist) en `index.html`, etiquetas Open Graph/Twitter Card y `rel=canonical` en las 5 páginas, imagen social en `images/og-preview.jpg`. El sitio ya está verificado en Google Search Console (propiedad de dominio) y el sitemap fue aceptado.
 
+## Imágenes: formato y atributos (obligatorio para imágenes nuevas)
+- Todas las imágenes que se muestran van en **WebP** (máx. 1600 px de ancho, calidad 82). Los JPG originales se conservan en `images/` como respaldo, no se sirven.
+- **Excepciones que siguen en PNG/JPG a propósito**: `og-preview.jpg`, porque varios rastreadores sociales (WhatsApp entre ellos) no renderizan WebP en la vista previa del enlace; y los `favicon-*.png`, porque iOS no acepta `apple-touch-icon` en WebP.
+- Cada `<img>` lleva `loading="lazy"`, `decoding="async"` y sus `width`/`height` reales. Sin las dimensiones, la página salta mientras carga. La única imagen sin `lazy` es el logo del encabezado, por estar sobre el pliegue.
+- El fondo del hero de cada página se precarga con `<link rel="preload" as="image">` en su `<head>`. Si se cambia ese fondo en el CSS, hay que cambiar también el preload.
+
 ## Manejo de imágenes (lecciones aprendidas)
 - Las fotos del celular del cliente suelen traer una etiqueta EXIF de orientación que `sips -g orientation` no reporta bien. Usar `PIL.ImageOps.exif_transpose()` o `sips --resampleHeightWidthMax` directo sobre el original, nunca rotar manualmente con `sips -r` y luego redimensionar, eso causa doble rotación.
 - Si una imagen ya procesada aparece de lado en el navegador pero se ve bien con el visor local, revisar con `python3 -c "from PIL import Image; print(Image.open('...').getexif().get(274))"`, si hay un tag de orientación viejo, hay que limpiarlo (recomprimir sin EXIF) sin rotar los píxeles de nuevo.
@@ -40,3 +47,15 @@ El sitio web está compuesto por los siguientes archivos HTML:
 - Facebook e Instagram: ya reconectados entre sí (esto lo resolvió el cliente directamente en Meta, no algo que Claude gestione).
 - Correo con dominio propio (`@andrewhazbun.com`): se recomendó Cloudflare Email Routing (gratis) + alias "enviar como" en Gmail existente, pendiente de que el cliente lo active.
 - El cliente es sensible al costo, prioriza siempre la opción gratuita o más económica disponible antes que una de pago.
+
+## Reglas de interfaz (auditoría Vercel, agosto 2026)
+- Las fuentes van con `<link>` y `preconnect` en el `<head>`, **nunca con `@import`** dentro del CSS: el `@import` obliga a descargar la hoja completa antes de descubrirlas y retrasa el texto.
+- Nada de `transition: all`, se enumeran las propiedades.
+- `color-scheme: dark` en `:root` y `<meta name="theme-color">` en todas las páginas: sin eso las barras de desplazamiento y los controles nativos salen claros sobre un sitio oscuro.
+- Todo lo enfocable tiene `:focus-visible` visible. Hay enlace de salto al contenido y `scroll-margin-top` para que el encabezado fijo no tape el destino de las anclas.
+- El lightbox de la galería es un diálogo: cierra con Escape, bloquea el scroll de fondo y devuelve el foco a la miniatura de origen.
+
+## Pendientes que dependen del cliente
+- **Bing Webmaster Tools**: sin dar de alta. Importa la propiedad directamente desde Google Search Console en un paso. Importa porque es la fuente de índice que alimenta a Copilot y a las búsquedas de ChatGPT.
+- **Analítica**: no hay ninguna instalada. La opción que encaja con el cliente es Cloudflare Web Analytics, gratuita, sin cookies y por tanto sin necesidad de banner de consentimiento, y el dominio ya está en Cloudflare.
+- **Aviso de privacidad**: redactado a partir de lo que el sitio hace de verdad, conviene que el cliente lo valide antes de darlo por definitivo.
