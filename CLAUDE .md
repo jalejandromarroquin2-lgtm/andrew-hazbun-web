@@ -50,6 +50,25 @@ El sitio web está compuesto por los siguientes archivos HTML:
 - Correo con dominio propio (`@andrewhazbun.com`): se recomendó Cloudflare Email Routing (gratis) + alias "enviar como" en Gmail existente, pendiente de que el cliente lo active.
 - El cliente es sensible al costo, prioriza siempre la opción gratuita o más económica disponible antes que una de pago.
 
+## Fondos de hero en móvil
+Las fotos de hero son horizontales y el hero de un teléfono es casi el doble de
+alto que ancho, así que `background-size: cover` recortaba una franja vertical
+estrecha: en la portada se veía el canto de una puerta de vidrio en vez de la
+recepción. Por debajo de **640 px** cada página usa una versión vertical 9:16,
+encuadrada a mano:
+
+| página | fondo en móvil |
+|---|---|
+| index | `hero-index-movil.webp` (recorte de `reception-entrance`) |
+| contacto y aviso | `hero-contacto-movil.webp` (recorte de `reception-moody`) |
+| servicios | `team-collaboration.webp` |
+| sobre-nosotros | `doctor-studio-v.webp` |
+
+Si cambia alguno, hay que cambiar también el `<link rel="preload">` de esa
+página, que lleva `media="(max-width: 640px)"` para la vertical y
+`media="(min-width: 641px)"` para la horizontal. **El punto de corte del CSS y
+el del preload tienen que coincidir**, si no se descarga la imagen que no se usa.
+
 ## Reglas de interfaz (auditoría Vercel, agosto 2026)
 - Las fuentes van con `<link>` y `preconnect` en el `<head>`, **nunca con `@import`** dentro del CSS: el `@import` obliga a descargar la hoja completa antes de descubrirlas y retrasa el texto.
 - Nada de `transition: all`, se enumeran las propiedades.

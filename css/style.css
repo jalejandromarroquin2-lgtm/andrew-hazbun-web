@@ -350,7 +350,7 @@ body{ padding-top: var(--header-h); }
 @media (max-width: 640px){
   .hero-sub{ min-height: 58vh; }
   .hero-sub .hero-overlay{
-    background: linear-gradient(180deg, rgba(6,6,7,0.82) 0%, rgba(6,6,7,0.5) 45%, rgba(6,6,7,0.68) 100%);
+    background: linear-gradient(180deg, rgba(6,6,7,0.80) 0%, rgba(6,6,7,0.42) 26%, rgba(6,6,7,0.76) 54%, rgba(6,6,7,0.92) 100%);
   }
   .hero-bg-index{
     background-position: 60% 35%;
@@ -365,7 +365,7 @@ body{ padding-top: var(--header-h); }
     background-position: 35% 55%;
   }
   .hero .hero-overlay{
-    background: linear-gradient(180deg, rgba(6,6,7,0.86) 0%, rgba(6,6,7,0.42) 40%, rgba(6,6,7,0.74) 100%);
+    background: linear-gradient(180deg, rgba(6,6,7,0.82) 0%, rgba(6,6,7,0.40) 28%, rgba(6,6,7,0.74) 56%, rgba(6,6,7,0.93) 100%);
   }
 }
 
@@ -913,4 +913,22 @@ summary:focus-visible,
     min-width: 44px;
     min-height: 44px;
   }
+}
+
+/* ---------- Fondos de hero en móvil ---------- */
+/* Las fotos de hero son horizontales y el hero de un teléfono es casi el doble
+   de alto que ancho. Con background-size: cover eso deja ver una franja
+   vertical estrecha: en la portada se veía el canto de una puerta de vidrio en
+   lugar de la recepción. Cada página usa aquí una versión vertical 9:16,
+   encuadrada a propósito, en vez de dejar que el recorte caiga donde sea. */
+@media (max-width: 640px) {
+  .hero-bg-index    { background-image: url('../images/hero-index-movil.webp'); }
+  .hero-bg-contacto { background-image: url('../images/hero-contacto-movil.webp'); }
+  .hero-bg-servicios{ background-image: url('../images/team-collaboration.webp'); }
+  .hero-bg-about    { background-image: url('../images/doctor-studio-v.webp'); }
+
+  /* Los recortes ya están encuadrados: el desplazamiento pensado para las
+     fotos horizontales dejaría el motivo fuera de cuadro. */
+  .hero-bg-index, .hero-bg-contacto,
+  .hero-bg-servicios, .hero-bg-about { background-position: center; }
 }
