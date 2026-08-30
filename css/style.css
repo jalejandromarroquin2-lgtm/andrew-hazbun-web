@@ -581,6 +581,53 @@ section{ padding: 100px 0; }
   color: var(--white-faint);
 }
 
+/* ---------- Aviso médico y responsable del contenido ---------- */
+.med-disclaimer{
+  border-top: 1px solid var(--line);
+  margin-top: 26px;
+  padding-top: 22px;
+  font-size: 0.74rem;
+  line-height: 1.7;
+  color: var(--white-faint);
+  max-width: 62ch;
+}
+.content-meta{
+  border: 1px solid var(--line);
+  border-left: 2px solid var(--gold-soft);
+  border-radius: 4px;
+  padding: 18px 22px;
+  margin-top: 2.6em;
+  font-size: 0.82rem;
+  line-height: 1.75;
+  color: var(--white-faint);
+}
+.content-meta strong{ color: var(--white); font-weight: 500; }
+
+/* ---------- Migas de navegación ---------- */
+.breadcrumb{
+  font-size: 0.78rem;
+  color: var(--white-faint);
+  padding: 18px 0 0;
+}
+.breadcrumb ol{
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  align-items: center;
+}
+.breadcrumb li::after{
+  content: "/";
+  margin-left: 8px;
+  color: var(--gold-soft);
+}
+.breadcrumb li:last-child::after{ content: none; }
+.breadcrumb a{ color: var(--white-faint); text-decoration: none; }
+.breadcrumb a:hover{ color: var(--gold); }
+.breadcrumb [aria-current="page"]{ color: var(--white); }
+
 /* ---------- Floating contact buttons ---------- */
 .float-contact{
   position: fixed;
