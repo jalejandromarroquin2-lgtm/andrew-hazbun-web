@@ -346,6 +346,22 @@ body{ padding-top: var(--header-h); }
   background-image: url('../images/hero-golden-hour.webp');
   background-position: center 55%;
 }
+.hero-bg-implantes-dentales{
+  background-image: url('../images/tomography-h.webp');
+  background-position: center 35%;
+}
+.hero-bg-ortodoncia{
+  background-image: url('../images/doctor-studio-h.webp');
+  background-position: center 30%;
+}
+.hero-bg-diseno-de-sonrisa{
+  background-image: url('../images/reception-symmetrical.webp');
+  background-position: center 45%;
+}
+.hero-bg-blanqueamiento-dental{
+  background-image: url('../images/gallery-cosmetic-treatment.webp');
+  background-position: center 40%;
+}
 
 @media (max-width: 640px){
   .hero-sub{ min-height: 58vh; }
@@ -581,6 +597,61 @@ section{ padding: 100px 0; }
   color: var(--white-faint);
 }
 
+/* ---------- Aviso médico y responsable del contenido ---------- */
+.med-disclaimer{
+  border-top: 1px solid var(--line);
+  margin-top: 26px;
+  padding-top: 22px;
+  font-size: 0.74rem;
+  line-height: 1.7;
+  color: var(--white-faint);
+  max-width: 62ch;
+}
+.content-meta{
+  border: 1px solid var(--line);
+  border-left: 2px solid var(--gold-soft);
+  border-radius: 4px;
+  padding: 18px 22px;
+  margin-top: 2.6em;
+  font-size: 0.82rem;
+  line-height: 1.75;
+  color: var(--white-faint);
+}
+.content-meta strong{ color: var(--white); font-weight: 500; }
+
+/* Horario y ubicación bajo los botones de la banda de llamada a la acción. */
+.cta-note{
+  margin-top: 22px;
+  font-size: 0.82rem;
+  line-height: 1.7;
+  color: var(--white-faint);
+}
+
+/* ---------- Migas de navegación ---------- */
+.breadcrumb{
+  font-size: 0.78rem;
+  color: var(--white-faint);
+  padding: 18px 0 0;
+}
+.breadcrumb ol{
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  align-items: center;
+}
+.breadcrumb li::after{
+  content: "/";
+  margin-left: 8px;
+  color: var(--gold-soft);
+}
+.breadcrumb li:last-child::after{ content: none; }
+.breadcrumb a{ color: var(--white-faint); text-decoration: none; }
+.breadcrumb a:hover{ color: var(--gold); }
+.breadcrumb [aria-current="page"]{ color: var(--white); }
+
 /* ---------- Floating contact buttons ---------- */
 .float-contact{
   position: fixed;
@@ -688,6 +759,31 @@ section{ padding: 100px 0; }
 .icon-wrap svg{ width: 26px; height: 26px; stroke: var(--gold); fill: none; stroke-width: 1.4; }
 .icon-card h3{ margin-bottom: 0.5em; font-size: 1.15rem; }
 .icon-card p{ color: var(--white-faint); font-size: 0.96rem; margin: 0; }
+
+/* Las tarjetas de servicios.html que tienen pagina propia enlazan desde su
+   titulo. El enlace hereda el color del titulo y solo se dora al pasar por
+   encima, para que la rejilla siga leyendose como una lista y no como un
+   bloque de enlaces. */
+.icon-card h3 a{
+  color: inherit;
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+.icon-card h3 a:hover,
+.icon-card h3 a:focus-visible{ color: var(--gold); }
+.icon-card .card-link{
+  display: inline-block;
+  margin-top: 1.1em;
+  font-size: 0.84rem;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--gold);
+  text-decoration: none;
+  border-bottom: 1px solid var(--gold-soft);
+  padding-bottom: 3px;
+  transition: border-color 0.3s ease;
+}
+.icon-card .card-link:hover{ border-color: var(--gold); }
 
 /* ---------- Full-width banner ---------- */
 .full-banner{ padding: 0; line-height: 0; }
@@ -927,8 +1023,15 @@ summary:focus-visible,
   .hero-bg-servicios{ background-image: url('../images/team-collaboration.webp'); }
   .hero-bg-about    { background-image: url('../images/doctor-studio-v.webp'); }
 
+  .hero-bg-implantes-dentales   { background-image: url('../images/gallery-treatment-bts.webp'); }
+  .hero-bg-ortodoncia           { background-image: url('../images/gallery-treatment-closeup.webp'); }
+  .hero-bg-diseno-de-sonrisa    { background-image: url('../images/doctor-detail-2.webp'); }
+  .hero-bg-blanqueamiento-dental{ background-image: url('../images/gallery-whitening.webp'); }
+
   /* Los recortes ya están encuadrados: el desplazamiento pensado para las
      fotos horizontales dejaría el motivo fuera de cuadro. */
   .hero-bg-index, .hero-bg-contacto,
-  .hero-bg-servicios, .hero-bg-about { background-position: center; }
+  .hero-bg-servicios, .hero-bg-about,
+  .hero-bg-implantes-dentales, .hero-bg-ortodoncia,
+  .hero-bg-diseno-de-sonrisa, .hero-bg-blanqueamiento-dental { background-position: center; }
 }

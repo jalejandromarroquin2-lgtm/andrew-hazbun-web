@@ -8,16 +8,75 @@
 ## Estructura del Sitio Local
 El sitio web está compuesto por los siguientes archivos HTML:
 - `index.html` (Página principal)
-- `servicios.html`
+- `servicios.html` (**índice** de tratamientos, no compite por término suelto)
 - `galeria.html`
 - `contacto.html` (incluye las preguntas frecuentes)
 - `sobre-nosotros.html`
 - `aviso-de-privacidad.html`
+- `404.html`
+
+Páginas por tratamiento, cada una con su `MedicalWebPage`, su `FAQPage` y
+migas de tres niveles:
+- `implantes-dentales.html`
+- `ortodoncia.html`
+- `diseno-de-sonrisa.html`
+- `blanqueamiento-dental.html`
+
+Las cuatro tarjetas correspondientes de `servicios.html` enlazan a su página
+desde el `<h3>` y desde un `a.card-link`. **Si se añade una página nueva de
+tratamiento hay que enlazarla desde ahí y meterla en `sitemap.xml`**, si no
+queda huérfana y no la indexa nadie.
 
 ## Reglas para Claude
 - Lee siempre este archivo antes de proponer cambios de código.
 - Mantén consistencia en los colores y fuentes en todas las páginas.
 - No alteres las rutas de las carpetas `css/`, `images/` o `js/`.
+
+## Contenido médico: qué se puede afirmar y qué no
+
+Google aplica a este sitio el criterio **YMYL**, el más estricto que tiene,
+porque es salud. La regla que gobierna todo el contenido clínico:
+
+**Prohibido, sin excepciones:** precios, rangos o financiación; porcentajes,
+tasas de éxito o cualquier estadística; promesas de resultado ("sin dolor",
+"para siempre", "garantizado", "el mejor", "indoloro"); plazos presentados
+como certeza; comparaciones con otras clínicas; testimonios o antes y después;
+y cualquier dato del centro que el sitio no afirme ya (premios, marcas de
+implantes, convenios, seguros, número de pacientes).
+
+**Permitido:** odontología general de manual, correcta y no controvertida, y
+los hechos que el sitio ya sostiene del centro (24+ años, UFM y Universidad
+Andrés Bello, tomografía 3D propia, escáner intraoral, laboratorio de
+esterilización con autoclave y cabina UV, sedación consciente con óxido
+nitroso, sistema Beyond Polus Ultra). Al tocar plazos o etapas, siempre en
+general: "suele", "por lo general", "varía según el caso", y remate en que se
+valora en consulta.
+
+Ya se retiraron dos veces afirmaciones de este tipo ("elimina el 99.9% de los
+riesgos", "100% bioseguridad", "sin dolor", una garantía de que el
+blanqueamiento no toca el esmalte). **No las reintroduzcas por otra puerta.**
+
+La pregunta del costo sí se responde, en las cuatro páginas de tratamiento,
+explicando de qué depende y remitiendo a la consulta de valoración, **sin una
+sola cifra y sin teléfonos dentro del `FAQPage`**.
+
+Cada página de tratamiento lleva un `div.content-meta` con el responsable del
+contenido y la fecha de revisión, y eso se refleja en el JSON-LD con
+`reviewedBy`, `lastReviewed` y `dateModified`.
+
+**Ortodoncia es un caso aparte.** El Dr. Hazbun es especialista en implantes,
+rehabilitación y estética, no en ortodoncia. Esa página dice "el ortodoncista
+que lleve su caso", nunca "su ortodoncista", y su `content-meta` explica que el
+tratamiento lo realiza un profesional de esa especialidad integrado al caso.
+
+## Trampa del FAQPage
+
+El texto de las preguntas frecuentes está **duplicado**: una vez en los
+`details.faq-item` visibles y otra dentro del bloque `FAQPage` del JSON-LD.
+**Tienen que coincidir carácter por carácter.** Si tocas una respuesta y
+olvidas la otra, Google puede tratar el marcado como engañoso. Es el fallo más
+fácil de cometer en este sitio: compruébalo con un script antes de dar por
+buena cualquier edición de preguntas.
 
 ## Redacción
 - Todo el texto del sitio se dirige al paciente de **usted**, nunca de tú ("su salud dental", "agende su cita", "conozca su trayectoria"). No uses tú/tu/te/ti ni conjugaciones informales.
@@ -57,12 +116,20 @@ estrecha: en la portada se veía el canto de una puerta de vidrio en vez de la
 recepción. Por debajo de **640 px** cada página usa una versión vertical 9:16,
 encuadrada a mano:
 
-| página | fondo en móvil |
-|---|---|
-| index | `hero-index-movil.webp` (recorte de `reception-entrance`) |
-| contacto y aviso | `hero-contacto-movil.webp` (recorte de `reception-moody`) |
-| servicios | `team-collaboration.webp` |
-| sobre-nosotros | `doctor-studio-v.webp` |
+| página | fondo en escritorio | fondo en móvil |
+|---|---|---|
+| index | `reception-entrance` | `hero-index-movil.webp` |
+| contacto y aviso | `reception-moody` | `hero-contacto-movil.webp` |
+| servicios | `team-treatment-h` | `team-collaboration.webp` |
+| sobre-nosotros | `hero-golden-hour` | `doctor-studio-v.webp` |
+| implantes-dentales | `tomography-h` | `gallery-treatment-bts.webp` |
+| ortodoncia | `doctor-studio-h` | `gallery-treatment-closeup.webp` |
+| diseno-de-sonrisa | `reception-symmetrical` | `doctor-detail-2.webp` |
+| blanqueamiento-dental | `gallery-cosmetic-treatment` | `gallery-whitening.webp` |
+
+**Cuidado al elegir foto para el cuerpo de una página:** no puede ser la misma
+que su propio fondo de hero, o sale dos veces. Pasó con `tomography-h` en
+implantes y hubo que cambiarla.
 
 Si cambia alguno, hay que cambiar también el `<link rel="preload">` de esa
 página, que lleva `media="(max-width: 640px)"` para la vertical y
@@ -99,6 +166,10 @@ EOF
 ```
 
 ## Pendientes que dependen del cliente
+- **Número de colegiado del Dr. Hazbun** (Colegio Estomatológico de Guatemala).
+  Es la pieza que más pesa y aún falta para una identidad profesional
+  verificable en un sitio de salud. Cuando llegue, va en `sobre-nosotros.html`
+  y en el JSON-LD de la `Person`.
 - **Bing Webmaster Tools**: sin dar de alta. Importa la propiedad directamente desde Google Search Console en un paso. Importa porque es la fuente de índice que alimenta a Copilot y a las búsquedas de ChatGPT.
 - **Analítica**: no hay ninguna instalada. La opción que encaja con el cliente es Cloudflare Web Analytics, gratuita, sin cookies y por tanto sin necesidad de banner de consentimiento, y el dominio ya está en Cloudflare.
 - **Aviso de privacidad**: redactado a partir de lo que el sitio hace de verdad, conviene que el cliente lo valide antes de darlo por definitivo.
