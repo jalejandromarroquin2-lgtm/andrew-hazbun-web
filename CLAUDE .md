@@ -21,8 +21,12 @@ migas de tres niveles:
 - `ortodoncia.html`
 - `diseno-de-sonrisa.html`
 - `blanqueamiento-dental.html`
+- `limpieza-dental.html`
+- `endodoncia.html`
+- `rehabilitacion-oral.html`
+- `periodoncia.html`
 
-Las cuatro tarjetas correspondientes de `servicios.html` enlazan a su página
+Las ocho tarjetas correspondientes de `servicios.html` enlazan a su página
 desde el `<h3>` y desde un `a.card-link`. **Si se añade una página nueva de
 tratamiento hay que enlazarla desde ahí y meterla en `sitemap.xml`**, si no
 queda huérfana y no la indexa nadie.
@@ -63,6 +67,21 @@ sola cifra y sin teléfonos dentro del `FAQPage`**.
 Cada página de tratamiento lleva un `div.content-meta` con el responsable del
 contenido y la fecha de revisión, y eso se refleja en el JSON-LD con
 `reviewedBy`, `lastReviewed` y `dateModified`.
+
+**Qué especialidad puede firmar qué.** El Dr. Hazbun es especialista en
+implantes, rehabilitación y estética. Esas páginas llevan su responsabilidad
+directa. Las de disciplinas que el centro integra con otros profesionales
+(ortodoncia, endodoncia, periodoncia) dicen siempre "el ortodoncista", "el
+endodoncista" o "el periodoncista que lleve su caso", nunca "su ortodoncista",
+y su `content-meta` explica que el tratamiento lo realiza un profesional de esa
+especialidad integrado al caso. `limpieza-dental.html` es odontología general y
+no necesita esa salvedad.
+
+**No se abrió página de urgencias ni de extracción de muela del juicio**, aunque
+son términos con búsquedas. El sitio no afirma en ninguna parte que el centro
+atienda urgencias fuera de horario ni que haga cirugía de terceros molares, y
+publicarlo habría sido inventar un servicio. Si el cliente confirma que sí los
+ofrece, se pueden abrir.
 
 **Ortodoncia es un caso aparte.** El Dr. Hazbun es especialista en implantes,
 rehabilitación y estética, no en ortodoncia. Esa página dice "el ortodoncista

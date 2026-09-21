@@ -362,6 +362,22 @@ body{ padding-top: var(--header-h); }
   background-image: url('../images/gallery-cosmetic-treatment.webp');
   background-position: center 40%;
 }
+.hero-bg-limpieza-dental{
+  background-image: url('../images/gallery-lounge-clean.webp');
+  background-position: center 45%;
+}
+.hero-bg-endodoncia{
+  background-image: url('../images/lounge-skyline.webp');
+  background-position: center 40%;
+}
+.hero-bg-rehabilitacion-oral{
+  background-image: url('../images/meeting-skyline.webp');
+  background-position: center 45%;
+}
+.hero-bg-periodoncia{
+  background-image: url('../images/reception-sign.webp');
+  background-position: center 40%;
+}
 
 @media (max-width: 640px){
   .hero-sub{ min-height: 58vh; }
@@ -1044,10 +1060,17 @@ summary:focus-visible,
   .hero-bg-diseno-de-sonrisa    { background-image: url('../images/doctor-detail-2.webp'); }
   .hero-bg-blanqueamiento-dental{ background-image: url('../images/gallery-whitening.webp'); }
 
+  .hero-bg-limpieza-dental     { background-image: url('../images/gallery-lounge-branded.webp'); }
+  .hero-bg-endodoncia          { background-image: url('../images/gallery-monitor-chair.webp'); }
+  .hero-bg-rehabilitacion-oral { background-image: url('../images/operatory-skyline.webp'); }
+  .hero-bg-periodoncia         { background-image: url('../images/gallery-scanner-live.webp'); }
+
   /* Los recortes ya están encuadrados: el desplazamiento pensado para las
      fotos horizontales dejaría el motivo fuera de cuadro. */
   .hero-bg-index, .hero-bg-contacto,
   .hero-bg-servicios, .hero-bg-about,
   .hero-bg-implantes-dentales, .hero-bg-ortodoncia,
-  .hero-bg-diseno-de-sonrisa, .hero-bg-blanqueamiento-dental { background-position: center; }
+  .hero-bg-diseno-de-sonrisa, .hero-bg-blanqueamiento-dental,
+  .hero-bg-limpieza-dental, .hero-bg-endodoncia,
+  .hero-bg-rehabilitacion-oral, .hero-bg-periodoncia { background-position: center; }
 }
