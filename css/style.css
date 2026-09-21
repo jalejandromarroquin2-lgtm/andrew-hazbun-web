@@ -439,6 +439,9 @@ section{ padding: 100px 0; }
 .split-media img{
   border-radius: var(--radius);
   width: 100%;
+  /* Sin height:auto el atributo height del HTML gana y aspect-ratio se ignora:
+     la foto sale como una franja de 1400 px de alto. Ver CLAUDE .md. */
+  height: auto;
   aspect-ratio: 4 / 5;
   object-fit: cover;
 }
@@ -458,7 +461,7 @@ section{ padding: 100px 0; }
   display: flex;
   flex-direction: column;
 }
-.service-card img{ aspect-ratio: 4/3; object-fit: cover; width: 100%; }
+.service-card img{ aspect-ratio: 4/3; object-fit: cover; width: 100%; height: auto; }
 .service-card .body{ padding: 28px; flex: 1; display:flex; flex-direction:column; }
 .service-card h3{ margin-bottom: 0.4em; }
 .service-card p{ color: var(--white-faint); font-size: 0.95rem; flex: 1; }
@@ -522,6 +525,10 @@ section{ padding: 100px 0; }
 
 @media (max-width: 700px){
   .gallery-grid{ grid-template-columns: repeat(2, 1fr); }
+  /* En dos columnas el mosaico se lee mejor todo cuadrado. El aspect-ratio de
+     la miniatura no basta: el enlace sigue ocupando dos filas y la foto se
+     estira con el height:100%, así que hay que devolverle su fila. */
+  .gallery-grid .tall{ grid-row: span 1; }
   .gallery-grid .tall img{ aspect-ratio: 1/1; }
 }
 
@@ -789,6 +796,7 @@ section{ padding: 100px 0; }
 .full-banner{ padding: 0; line-height: 0; }
 .full-banner img{
   width: 100%;
+  height: auto;
   display: block;
   max-height: 520px;
   object-fit: cover;
@@ -807,6 +815,7 @@ section{ padding: 100px 0; }
 .triptych figure{ margin: 0; }
 .triptych img{
   width: 100%;
+  height: auto;
   aspect-ratio: 3 / 4;
   object-fit: cover;
   border-radius: var(--radius);
@@ -821,6 +830,13 @@ section{ padding: 100px 0; }
 @media (max-width: 700px){
   .triptych{ gap: 8px; }
   .triptych figcaption{ font-size: 0.68rem; margin-top: 0.5em; }
+}
+/* En un teléfono, tres columnas dejan las fotos en 104 px de ancho y el pie en
+   10 px: ilegible. Por debajo de 560 px va una debajo de otra, a ancho completo. */
+@media (max-width: 560px){
+  .triptych{ grid-template-columns: 1fr; gap: 24px; }
+  .triptych img{ aspect-ratio: 4 / 3; }
+  .triptych figcaption{ font-size: 0.82rem; margin-top: 0.7em; }
 }
 
 /* ---------- Misc ---------- */

@@ -97,6 +97,17 @@ buena cualquier edición de preguntas.
 - El fondo del hero de cada página se precarga con `<link rel="preload" as="image">` en su `<head>`. Si se cambia ese fondo en el CSS, hay que cambiar también el preload.
 - **Trampa con `width`/`height`:** si una imagen lleva esos atributos y además le fijás **solo una** dimensión por CSS (por ejemplo `style="height:52px"`), el navegador usa el atributo `width` como ancho y la aplasta. Siempre acompañá con `width:auto` (o `height:auto`, según cuál fijes). Así pasó con el logo del pie.
 - Las imágenes que se muestran en rejilla (galería, tríptico de servicios) llevan `srcset` con una variante `-900.webp` y un `sizes` que describe la rejilla real. Si cambian las columnas en el CSS, hay que actualizar el `sizes` o el navegador elegirá mal el archivo.
+- **La misma trampa, en su versión más cara: `aspect-ratio` no sirve de nada si
+  el alto no es `auto`.** El atributo `height` del HTML entra como hint de
+  presentación, así que una regla con `width:100%` y `aspect-ratio` pero sin
+  `height:auto` deja la foto con el alto literal del archivo: `.split-media img`
+  salía a 1366, 1800 y hasta 1920 px de alto en todas las páginas, en móvil y en
+  escritorio, durante un mes. Toda regla que combine `width` con `aspect-ratio`
+  lleva `height:auto`: hoy `.split-media img`, `.triptych img`,
+  `.service-card img` y `.full-banner img`.
+- En la galería no basta con cambiar el `aspect-ratio` de la miniatura para el
+  móvil: `.gallery-grid .tall` ocupa dos filas y la imagen tiene `height:100%`,
+  que gana. Hay que devolverle la fila (`grid-row: span 1`) en el mismo bloque.
 
 ## Manejo de imágenes (lecciones aprendidas)
 - Las fotos del celular del cliente suelen traer una etiqueta EXIF de orientación que `sips -g orientation` no reporta bien. Usar `PIL.ImageOps.exif_transpose()` o `sips --resampleHeightWidthMax` directo sobre el original, nunca rotar manualmente con `sips -r` y luego redimensionar, eso causa doble rotación.
@@ -135,6 +146,21 @@ Si cambia alguno, hay que cambiar también el `<link rel="preload">` de esa
 página, que lleva `media="(max-width: 640px)"` para la vertical y
 `media="(min-width: 641px)"` para la horizontal. **El punto de corte del CSS y
 el del preload tienen que coincidir**, si no se descarga la imagen que no se usa.
+
+## Puntos de corte de las rejillas
+
+El sitio no tiene un solo punto de corte, cada componente rompe donde le toca.
+Al tocar cualquiera de ellos hay que revisar el `sizes` de sus imágenes:
+
+| componente | corte | qué pasa debajo |
+|---|---|---|
+| `.split` (foto + texto) | 900 px | una columna, foto a ancho completo en 4:5 |
+| `.gallery-grid` | 700 px | dos columnas, todo cuadrado (las `.tall` dejan de ocupar dos filas) |
+| `.triptych` | 560 px | una columna, foto a ancho completo en 4:3 y pie legible |
+| fondos de hero | 640 px | versión vertical 9:16 de cada foto |
+
+El tríptico partía en tres columnas hasta el final: en un teléfono dejaba las
+fotos en 104 px de ancho y el pie en 10,88 px.
 
 ## Reglas de interfaz (auditoría Vercel, agosto 2026)
 - Las fuentes van con `<link>` y `preconnect` en el `<head>`, **nunca con `@import`** dentro del CSS: el `@import` obliga a descargar la hoja completa antes de descubrirlas y retrasa el texto.
