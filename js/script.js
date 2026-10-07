@@ -1,3 +1,29 @@
+// Google Analytics 4 (G-M2LR423MPY). Se carga desde aquí para no repetirlo en cada página.
+(function () {
+  var GA_ID = 'G-M2LR423MPY';
+  var s = document.createElement('script');
+  s.async = true;
+  s.src = 'https://www.googletagmanager.com/gtag/js?id=' + GA_ID;
+  document.head.appendChild(s);
+  window.dataLayer = window.dataLayer || [];
+  window.gtag = function () { window.dataLayer.push(arguments); };
+  window.gtag('js', new Date());
+  window.gtag('config', GA_ID);
+
+  // Contactos: clics en WhatsApp y en el teléfono (se marcan como eventos clave en GA).
+  document.addEventListener('click', function (e) {
+    var a = e.target.closest ? e.target.closest('a[href]') : null;
+    if (!a) return;
+    var href = a.getAttribute('href') || '';
+    var where = location.pathname.replace(/^\//, '') || 'index.html';
+    if (href.indexOf('wa.me/') !== -1 || href.indexOf('api.whatsapp.com') !== -1) {
+      window.gtag('event', 'clic_whatsapp', { pagina: where, transport_type: 'beacon' });
+    } else if (href.indexOf('tel:') === 0) {
+      window.gtag('event', 'clic_telefono', { pagina: where, transport_type: 'beacon' });
+    }
+  }, true);
+})();
+
 document.addEventListener('DOMContentLoaded', function () {
   // Mobile nav toggle
   var toggle = document.querySelector('.nav-toggle');
