@@ -1074,3 +1074,98 @@ summary:focus-visible,
   .hero-bg-limpieza-dental, .hero-bg-endodoncia,
   .hero-bg-rehabilitacion-oral, .hero-bg-periodoncia { background-position: center; }
 }
+
+/* ===========================================================
+   Nov 2026 · Opiniones, objetivos, primera visita, urgencias
+   =========================================================== */
+.stars{ display:inline-flex; gap:2px; color: var(--gold); vertical-align: middle; }
+.stars svg{ width:16px; height:16px; fill: currentColor; }
+
+/* Chip de calificación en el hero */
+.rating-chip{
+  display:inline-flex; align-items:center; gap:10px; margin-top:1.6em;
+  padding:.6em 1.1em; border:1px solid var(--gold-soft); border-radius:999px;
+  background: rgba(11,11,12,.55); backdrop-filter: blur(6px);
+  font-size:.85rem; color: var(--white-dim);
+}
+.rating-chip strong{ color: var(--white); font-size:1rem; }
+.rating-chip:hover{ border-color: var(--gold); }
+
+/* ¿Qué quiere resolver? */
+.goal-grid{ display:grid; grid-template-columns: repeat(4, 1fr); gap:14px; }
+.goal-chip{
+  display:flex; align-items:center; justify-content:space-between; gap:12px;
+  padding:1.1em 1.25em; min-height:72px; border:1px solid var(--line); border-radius: var(--radius);
+  background: var(--charcoal); font-size:.95rem; font-weight:500; line-height:1.35;
+  transition: border-color .2s, background .2s;
+}
+.goal-chip span{ color: var(--gold); transition: transform .2s; }
+.goal-chip:hover{ border-color: var(--gold); background: var(--charcoal-2); }
+.goal-chip:hover span{ transform: translateX(4px); }
+@media (max-width: 1000px){ .goal-grid{ grid-template-columns: repeat(2, 1fr); } }
+@media (max-width: 480px){ .goal-chip{ font-size:.9rem; padding:1em; min-height:64px; } .goal-grid{ gap:10px; } }
+
+/* Opiniones */
+.reviews-head{ display:flex; align-items:flex-end; justify-content:space-between; gap:32px; margin-bottom:2.6em; flex-wrap:wrap; }
+.reviews-head h2{ margin-bottom:0; }
+.rating-box{ display:flex; align-items:center; gap:16px; padding:1em 1.4em; border:1px solid var(--gold-soft); border-radius: var(--radius); }
+.rating-box:hover{ border-color: var(--gold); }
+.rating-num{ font-family: var(--serif); font-size:2.8rem; line-height:1; color: var(--white); }
+.rating-box small{ display:block; margin-top:6px; font-size:.78rem; color: var(--white-faint); letter-spacing:.04em; }
+.review-track{ display:grid; grid-template-columns: 1.6fr 1fr 1fr 1fr; gap:20px; }
+.review-card{
+  margin:0; padding:28px; background: var(--black); border:1px solid var(--line); border-radius: var(--radius);
+  display:flex; flex-direction:column; gap:16px;
+}
+.review-card blockquote{ margin:0; flex:1; font-family: var(--serif); font-size:1.08rem; line-height:1.6; color: var(--white-dim); }
+.review-card figcaption{ display:flex; flex-direction:column; gap:3px; font-size:.85rem; }
+.review-card figcaption strong{ color: var(--white); font-weight:600; }
+.review-tag{ color: var(--gold); font-size:.8rem; }
+.review-src{ color: var(--white-faint); font-size:.75rem; }
+.reviews-note{ margin:1.6em 0 2em; font-size:.78rem; color: var(--white-faint); text-align:center; }
+.review-single{ max-width: 760px; margin: 0 auto; text-align:center; align-items:center; }
+.review-single blockquote{ font-size:1.25rem; }
+.review-single figcaption{ align-items:center; }
+@media (max-width: 1000px){
+  .review-track{
+    display:flex; overflow-x:auto; scroll-snap-type:x mandatory; gap:14px;
+    margin: 0 -24px; padding: 0 24px 8px; scroll-padding-left: 24px; scrollbar-width: none;
+  }
+  .review-track::-webkit-scrollbar{ display:none; }
+  .review-card{ flex: 0 0 82%; scroll-snap-align: start; }
+  .reviews-head{ align-items:flex-start; }
+}
+@media (max-width: 480px){
+  .review-card{ flex-basis: 86%; padding:22px; }
+  .rating-num{ font-size:2.3rem; }
+}
+
+/* Primera visita */
+.steps{ display:grid; grid-template-columns: repeat(4, 1fr); gap:20px; counter-reset: s; }
+.step{ padding:28px 24px; border-top:2px solid var(--gold); background: var(--charcoal); }
+.step-num{ display:block; font-family: var(--serif); font-size:1.9rem; color: var(--gold); margin-bottom:.4em; }
+.step h3{ font-size:1.15rem; margin-bottom:.5em; }
+.step p{ margin:0; font-size:.92rem; color: var(--white-faint); line-height:1.6; }
+.visit-faq{ display:grid; grid-template-columns: 1fr 1.6fr; gap:56px; margin-top:80px; align-items:start; }
+.visit-faq .section-head{ margin-bottom:0; }
+.link-more{ display:inline-block; margin-top:1em; color: var(--gold); font-size:.9rem; font-weight:500; }
+.link-more:hover{ color: var(--white); }
+@media (max-width: 1000px){ .steps{ grid-template-columns: repeat(2, 1fr); } .visit-faq{ grid-template-columns: 1fr; gap:24px; margin-top:56px; } }
+@media (max-width: 560px){ .steps{ grid-template-columns: 1fr; gap:12px; } .step{ padding:22px 20px; } }
+
+/* Urgencias */
+.urgent{ background: var(--charcoal-2); border-top:1px solid var(--line); }
+.urgent-inner{ display:grid; grid-template-columns: 1.5fr 1fr; gap:40px; align-items:center; }
+.urgent h2{ font-size: clamp(1.4rem, 2.6vw, 2rem); }
+.urgent p{ color: var(--white-faint); margin:0; }
+.urgent-actions{ display:flex; flex-direction:column; gap:12px; }
+@media (max-width: 900px){ .urgent-inner{ grid-template-columns: 1fr; gap:24px; } }
+.cta-hours{ color: var(--gold); font-size:.9rem; letter-spacing:.03em; margin-top:-.4em; }
+.visit-faq .faq{ margin:0; max-width:none; }
+@media (max-width: 560px){
+  .reviews .btn{ width:100%; white-space:normal; justify-content:center; text-align:center; }
+  .rating-chip .chip-more{ display:none; }
+  .step{ display:grid; grid-template-columns: 44px 1fr; column-gap:14px; padding:18px 18px; }
+  .step-num{ grid-row: span 2; font-size:1.5rem; margin:0; line-height:1.1; }
+  .step h3{ font-size:1.05rem; margin-bottom:.3em; }
+}
