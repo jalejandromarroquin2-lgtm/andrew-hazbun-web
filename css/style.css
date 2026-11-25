@@ -1169,3 +1169,67 @@ summary:focus-visible,
   .step-num{ grid-row: span 2; font-size:1.5rem; margin:0; line-height:1.1; }
   .step h3{ font-size:1.05rem; margin-bottom:.3em; }
 }
+
+/* ===========================================================
+   Opiniones en vivo (25 nov 2026) — más protagonismo
+   =========================================================== */
+.reviews{ position:relative; overflow:hidden; }
+.reviews::before{
+  content:""; position:absolute; inset:0; pointer-events:none;
+  background: radial-gradient(60% 50% at 85% 0%, rgba(200,168,98,.12), transparent 70%);
+}
+.reviews .container{ position:relative; }
+.g-mark{ width:22px; height:22px; flex:0 0 auto; }
+.rating-box{ gap:18px; padding:1.1em 1.6em; background: var(--black); border-color: var(--gold); }
+.rating-box .g-mark{ width:34px; height:34px; }
+.rating-box .stars svg{ width:20px; height:20px; }
+.rating-num{ font-size:3.4rem; }
+.rating-box small{ font-size:.85rem; color: var(--white-dim); }
+
+.review-wrap{ position:relative; }
+.reviews .review-track{
+  display:flex; gap:20px; overflow-x:auto; scroll-snap-type:x mandatory;
+  scrollbar-width:none; padding-bottom:6px;
+}
+.reviews .review-track::-webkit-scrollbar{ display:none; }
+.reviews .review-card{
+  flex:0 0 calc((100% - 40px) / 3); scroll-snap-align:start;
+  background: var(--black); border-color: rgba(200,168,98,.22); padding:30px 28px 26px;
+  transition: border-color .25s, transform .25s;
+}
+.reviews .review-card:hover{ border-color: var(--gold); transform: translateY(-3px); }
+.review-top{ display:flex; align-items:center; justify-content:space-between; }
+.reviews .review-card blockquote{ font-size:1.12rem; color: var(--white); }
+.review-featured{ flex-basis: calc((100% - 20px) / 1.6) !important; background: linear-gradient(160deg, #1d1a12, var(--black) 60%) !important; border-color: var(--gold-soft) !important; }
+.review-featured blockquote{ font-size:1.3rem; line-height:1.55; }
+.reviews .review-short blockquote{ font-size:1.55rem; line-height:1.4; display:flex; align-items:center; }
+.reviews .review-card figcaption{ flex-direction:row; align-items:center; gap:12px; }
+.reviews .review-card figcaption > span:last-child{ display:flex; flex-direction:column; gap:2px; }
+.review-avatar{
+  width:38px; height:38px; border-radius:50%; flex:0 0 auto;
+  display:grid; place-items:center; font-weight:600; font-size:1rem;
+  color:#16130b; background: var(--gold);
+}
+.reviews .review-src{ font-size:.78rem; }
+.review-nav{ display:flex; justify-content:flex-end; gap:10px; margin-top:18px; }
+.review-arrow{
+  width:46px; height:46px; border-radius:50%; border:1px solid var(--gold-soft);
+  background:transparent; color: var(--white); font-size:1.1rem; cursor:pointer;
+  transition: border-color .2s, background .2s;
+}
+.review-arrow:hover{ border-color: var(--gold); background: rgba(200,168,98,.15); }
+.reviews-actions{ display:flex; gap:14px; justify-content:center; flex-wrap:wrap; }
+.btn-gold-text{ color: var(--gold); border-color: transparent; }
+.btn-gold-text:hover{ color: var(--white); }
+@media (max-width: 1000px){
+  .reviews .review-track{ margin:0 -24px; padding:0 24px 8px; scroll-padding-left:24px; gap:14px; }
+  .reviews .review-card, .review-featured{ flex-basis: 78% !important; }
+  .rating-box{ width:100%; justify-content:flex-start; }
+}
+@media (max-width: 560px){
+  .reviews .review-card, .review-featured{ flex-basis: 86% !important; padding:24px 22px; }
+  .review-featured blockquote{ font-size:1.15rem; }
+  .rating-num{ font-size:2.8rem; }
+  .review-nav{ display:none; }
+  .reviews-actions{ flex-direction:column; }
+}
