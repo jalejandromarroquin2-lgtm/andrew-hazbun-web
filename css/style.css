@@ -1201,7 +1201,7 @@ summary:focus-visible,
 .review-top{ display:flex; align-items:center; justify-content:space-between; }
 .reviews .review-card blockquote{ font-size:1.12rem; color: var(--white); }
 .review-featured{ flex-basis: calc((100% - 20px) / 1.6) !important; background: linear-gradient(160deg, #1d1a12, var(--black) 60%) !important; border-color: var(--gold-soft) !important; }
-.review-featured blockquote{ font-size:1.3rem; line-height:1.55; }
+.reviews .review-featured blockquote{ font-size:1.3rem; line-height:1.55; }
 .reviews .review-short blockquote{ font-size:1.55rem; line-height:1.4; display:flex; align-items:center; }
 .reviews .review-card figcaption{ flex-direction:row; align-items:center; gap:12px; }
 .reviews .review-card figcaption > span:last-child{ display:flex; flex-direction:column; gap:2px; }
@@ -1228,7 +1228,8 @@ summary:focus-visible,
 }
 @media (max-width: 560px){
   .reviews .review-card, .review-featured{ flex-basis: 86% !important; padding:24px 22px; }
-  .review-featured blockquote{ font-size:1.15rem; }
+  .reviews .review-featured blockquote{ font-size:1.02rem; line-height:1.5; }
+  .reviews .review-short blockquote{ font-size:1.3rem; }
   .rating-num{ font-size:2.8rem; }
   .review-nav{ display:none; }
   .reviews-actions{ flex-direction:column; }

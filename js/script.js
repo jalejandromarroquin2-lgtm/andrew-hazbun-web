@@ -124,3 +124,21 @@ document.addEventListener('DOMContentLoaded', function () {
     }
   }
 });
+
+// En celular, los botones flotantes de llamar/WhatsApp aparecen al bajar del primer pantallazo
+// (arriba ya están en el encabezado y en el hero; así no tapan el texto de entrada).
+(function () {
+  var f = document.querySelector('.float-contact');
+  if (!f || !window.matchMedia) return;
+  var mq = window.matchMedia('(max-width: 900px)');
+  f.style.transition = 'opacity .3s ease, transform .3s ease';
+  function upd() {
+    var ocultar = mq.matches && window.scrollY < window.innerHeight * 0.75;
+    f.style.opacity = ocultar ? '0' : '';
+    f.style.transform = ocultar ? 'translateY(16px)' : '';
+    f.style.pointerEvents = ocultar ? 'none' : '';
+  }
+  window.addEventListener('scroll', upd, { passive: true });
+  if (mq.addEventListener) mq.addEventListener('change', upd);
+  upd();
+})();
